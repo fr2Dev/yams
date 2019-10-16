@@ -10,7 +10,7 @@ const getNewDices = arrayDices => {
   }, []);
 };
 
-const useDices = initialValue => {
+const useDice = initialValue => {
   // Hooks
   const [throws, setThrows] = useState(0);
   const [turn, setTurn] = useState(13);
@@ -69,4 +69,5 @@ const useDices = initialValue => {
   };
 };
 
-export default useDices;
+export { throwDice, getThrowsNumber };
+export default useDice;
