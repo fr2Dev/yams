@@ -1,7 +1,8 @@
 import React from 'react';
 import { Wrapper, Dot, Side } from './style';
 
-const Dice = ({ number, isKept, index, toggleKeep }) => {
+const Dice = ({ dice, index, toggleKeep }) => {
+  const { number, isKept } = dice;
   const dots = [...Array(number)];
 
   return (
