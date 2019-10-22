@@ -21,7 +21,6 @@ const Wrapper = styled.div`
   border: 2px solid #333;
   border-radius: 8px;
   box-shadow: ${({ isKept }) => isKept && '0 0 5px 2px green'};
-  color: #333;
   height: ${({ size }) => size || '3rem'};
   position: relative;
   width: ${({ size }) => size || '3rem'};
