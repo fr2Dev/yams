@@ -6,7 +6,7 @@ const addGoals = arrayGoals => (name, isOnlyNumber = true) => {
     {
       name,
       isOnlyNumber,
-      isDone: false
+      value: null
     }
   ];
 };
@@ -17,11 +17,11 @@ const setListGoals = () => {
   const combinationsGoalsLabels = [
     'trips',
     'square',
-    'full',
     'petiteSuite',
     'largeSuite',
-    'yams',
-    'luck'
+    'full',
+    'luck',
+    'yams'
   ];
 
   const numberOnlyGoals = numberOnlyGoalsLabels.reduce(
@@ -39,9 +39,15 @@ const setListGoals = () => {
 
 const listGoals = setListGoals();
 
+const getAvailableGoals = goals => goals.filter(goal => goal.value === null);
+// TODO: test
+const getOnlyNumbers = goalsAvailable => goalsAvailable.filter(goal => goal.isOnlyNumber);
+const getCombination = goalsAvailable => goalsAvailable.filter(goal => !goal.isOnlyNumber);
+
 const useGoals = () => {
   const [goals, setGoals] = useState(listGoals);
   return { goals };
 };
 
+export { listGoals, getAvailableGoals };
 export default useGoals;
