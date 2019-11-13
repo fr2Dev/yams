@@ -1,4 +1,4 @@
-import { listGoals, getAvailableGoals } from './useGoals';
+import { listGoals, getAvailableGoals, getOnlyNumbers, getCombinations } from './useGoals';
 
 const getGoalsCompleted = number => {
   const goalsCompleted = listGoals.map((goal, i) => {
@@ -26,4 +26,62 @@ test('should get corrert remainingGoals length', () => {
     const goalRemaining = getGoalsRemaining(numberGoalsAchieved);
     expect(goalRemaining).toHaveLength(lengthExptected);
   });
+});
+
+test('shoulg get right categorie of goals', () => {
+  const goals = [
+    {
+      name: '1',
+      isOnlyNumber: true
+    },
+    {
+      name: '2',
+      isOnlyNumber: true
+    },
+    {
+      name: '3',
+      isOnlyNumber: true
+    },
+    {
+      name: 'trips',
+      isOnlyNumber: false
+    },
+    {
+      name: 'square',
+      isOnlyNumber: false
+    },
+    {
+      name: 'yams',
+      isOnlyNumber: false
+    }
+  ];
+
+  expect(getOnlyNumbers(goals)).toEqual([
+    {
+      name: '1',
+      isOnlyNumber: true
+    },
+    {
+      name: '2',
+      isOnlyNumber: true
+    },
+    {
+      name: '3',
+      isOnlyNumber: true
+    }
+  ]);
+  expect(getCombinations(goals)).toEqual([
+    {
+      name: 'trips',
+      isOnlyNumber: false
+    },
+    {
+      name: 'square',
+      isOnlyNumber: false
+    },
+    {
+      name: 'yams',
+      isOnlyNumber: false
+    }
+  ]);
 });

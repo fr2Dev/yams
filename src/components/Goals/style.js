@@ -11,6 +11,7 @@ const ListGoals = styled.ul`
 
 const ItemGoal = styled.li`
   padding: 0.25rem 0.5rem;
+  position: relative;
   text-transform: capitalize;
   user-select: none;
 
@@ -19,4 +20,19 @@ const ItemGoal = styled.li`
   }
 `;
 
-export { ListGoals, ItemGoal };
+const AvailableValue = styled.span`
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &:hover {
+    background-color: orangered;
+  }
+`;
+
+export { ListGoals, ItemGoal, AvailableValue };

@@ -12,18 +12,6 @@ const Main = () => {
   const { goals } = useGoals();
   const [throws, setThrows] = useState(2);
   const [turn, setTurn] = useState(goals.length);
-  console.log('goals: ', goals);
-
-  // const getDicesArray = array => {
-  //   const a = array.map((item, i) => ({
-  //     number: item,
-  //     isKept: false
-  //   }));
-  //   console.log('a: ', a);
-  //   return a;
-  // };
-
-  // const a = getDicesArray([3, 4, 5, 6, 2]);
 
   useEffect(() => {
     throwDices();
@@ -37,6 +25,10 @@ const Main = () => {
       return setThrows(throws - 1);
     }
   };
+
+  const dicesNumber = dices.map(dice => dice.number);
+  const uniqueDices = [...new Set(dicesNumber)];
+  console.log('uniqueDices: ', uniqueDices);
 
   const setNewThrow = () => goNextThrows(keepDices);
   const isThrowDisabled = throws === 0;
