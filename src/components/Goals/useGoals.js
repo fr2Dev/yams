@@ -50,9 +50,13 @@ const useGoals = () => {
 
   return { goals };
 };
+//TODO: Dans goals.js
+//TODO: goals.map
+//TODO: if value is null then calculate & value is onlyNumber use fn calcNumber else use fn calcCombination | display box value
+//TODO: goal.value === null ? calculate && value is onlyNumber ? calcNumber : calcCombination && display box value
 
-//TODO: - apply operation on numbers & combinations
-//TODO: - return array with value for each goals
+//* Calc number => If goal is present in Dices, count how many times and multiply goal.name by occurence to get total
+//* Calc number => dices.some(goal => goal.name) && dices.reduce() && total = occurence * goal.value
 
 export { listGoals, getAvailableGoals, getOnlyNumbers, getCombinations };
 export default useGoals;
