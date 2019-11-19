@@ -44,6 +44,118 @@ const listGoals = setListGoals();
 const getAvailableGoals = goals => goals.filter(goal => goal.value === initialValue);
 const getOnlyNumbers = goalsAvailable => goalsAvailable.filter(goal => goal.isOnlyNumber);
 const getCombinations = goalsAvailable => goalsAvailable.filter(goal => !goal.isOnlyNumber);
+const getTotalSingleNumber = (number, arrayDices) =>
+  arrayDices.reduce((prevNumber, nextNumber) => {
+    if (nextNumber !== number) return prevNumber;
+
+    return prevNumber + nextNumber;
+  }, 0);
+const getTotalDices = dices => dices.reduce((prevDice, nextDice) => prevDice + nextDice, 0);
+
+const getNumberAndOccurence = dices =>
+  dices.reduce((prevNumbers, nextNumber) => {
+    const hasPrevNumbers = prevNumbers.length > 0;
+
+    if (hasPrevNumbers) {
+      const isAlreadyPresent = prevNumbers.some(prevNumber => {
+        return prevNumber.number === nextNumber;
+      });
+      if (isAlreadyPresent) {
+        const updatedPrevNumbers = prevNumbers.map(prevNumber => {
+          const { number, occurence } = prevNumber;
+          if (number === nextNumber)
+            return {
+              number,
+              occurence: occurence + 1
+            };
+
+          return prevNumber;
+        });
+
+        return updatedPrevNumbers;
+      }
+    }
+
+    return [
+      ...prevNumbers,
+      {
+        number: nextNumber,
+        occurence: 1
+      }
+    ];
+  }, []);
+
+const getSuiteLength = dices => {
+  const sortedDices = dices.sort();
+  const getInitialValue = () => sortedDices[0] - 1;
+  const initialValue = getInitialValue();
+  const minimumLength = 4;
+  let totalLength = 0;
+
+  sortedDices.reduce((prev, next) => {
+    const isSuite = next === prev + 1;
+    isSuite ? (totalLength += 1) : totalLength < minimumLength && (totalLength = 1);
+    return next;
+  }, initialValue);
+
+  if (totalLength < minimumLength) return null;
+  return totalLength;
+};
+
+const getPetiteSuite = length => (length >= 4 ? 30 : 0);
+const getLargeSuite = length => (length === 5 ? 50 : 0);
+
+const getTrips = (name, dicesOccurence) => {
+  const { length } = dicesOccurence;
+  const numberSearched = Number(name);
+  const lengthRequired = 3;
+  const hasEnoughOccurence = dicesOccurence.some(dice => dice.occurence >= lengthRequired);
+  const matchNumber = dicesOccurence.some(dice => {
+    const { number, occurence } = dice;
+
+    return number === numberSearched && occurence >= lengthRequired;
+  });
+
+  if (length > lengthRequired || !hasEnoughOccurence || !matchNumber) return 0;
+  const tripsNumber = dicesOccurence.find(dice => dice.occurence >= lengthRequired);
+  const { number, occurence } = tripsNumber;
+  const total = number * lengthRequired;
+
+  return total;
+};
+
+// const getTotalCombination = (goal, dices) => {
+//   const { name } = goal;
+
+//   switch (name) {
+//     case 'petiteSuite':
+//       return getPetiteSuite();
+//       break;
+
+//     case 'largeSuite':
+//       return getLargeSuite();
+//       break;
+
+//     case 'trips':
+//       return getTrips();
+//       break;
+
+//     case 'square':
+//       return getSquare();
+//       break;
+
+//     case 'full':
+//       return getFull();
+//       break;
+
+//     case 'yams':
+//       return getYams();
+//       break;
+
+//     default:
+//       break;
+//   }
+// };
 
 const useGoals = () => {
   const [goals, setGoals] = useState(listGoals);
@@ -55,8 +167,17 @@ const useGoals = () => {
 //TODO: if value is null then calculate & value is onlyNumber use fn calcNumber else use fn calcCombination | display box value
 //TODO: goal.value === null ? calculate && value is onlyNumber ? calcNumber : calcCombination && display box value
 
-//* Calc number => If goal is present in Dices, count how many times and multiply goal.name by occurence to get total
 //* Calc number => dices.some(goal => goal.name) && dices.reduce() && total = occurence * goal.value
 
-export { listGoals, getAvailableGoals, getOnlyNumbers, getCombinations };
+export {
+  listGoals,
+  getAvailableGoals,
+  getOnlyNumbers,
+  getCombinations,
+  getTotalSingleNumber,
+  getTotalDices,
+  getNumberAndOccurence,
+  getSuiteLength,
+  getTrips
+};
 export default useGoals;
