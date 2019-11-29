@@ -131,21 +131,25 @@ const getSquare = (name, dicesOccurence) => getSameNumbers(name, dicesOccurence,
 //   const { name } = goal;
 
 //   switch (name) {
-//     case 'petiteSuite':
-//       return getPetiteSuite();
-//       break;
+//*     case 'petiteSuite':
+//*       const suiteLength = getSuiteLength(dices);
+//*       return getPetiteSuite(suiteLength);
+//*       break;
 
-//     case 'largeSuite':
-//       return getLargeSuite();
-//       break;
+//*     case 'largeSuite':
+//*       const suiteLength = getSuiteLength(dices);
+//*       return getLargeSuite(suiteLength);
+//*       break;
 
-//     case 'trips':
-//       return getTrips();
-//       break;
+//*     case 'trips':
+//*       const numberAndOccurence = getNumberAndOccurence(dices);
+//*       return getTrips(name, numberAndOccurence);
+//*       break;
 
-//     case 'square':
-//       return getSquare();
-//       break;
+//*     case 'square':
+//*       const numberAndOccurence = getNumberAndOccurence(dices);
+//*       return getSquare(name, numberAndOccurence);
+//*       break;
 
 //     case 'full':
 //       return getFull();
