@@ -7,7 +7,8 @@ import {
   getTotalDices,
   getNumberAndOccurence,
   getSuiteLength,
-  getTrips
+  getTrips,
+  getSquare
 } from './useGoals';
 
 const dicesOne = [1, 3, 5, 3, 5];
@@ -179,4 +180,16 @@ test('should get trips total value', () => {
   expect(getTrips('5', occurenceDicesTwo)).toBe(0);
   expect(getTrips('1', occurenceDicesThree)).toBe(0);
   expect(getTrips('6', occurenceDicesThree)).toBe(18);
+});
+test('should get a square total value', () => {
+  const occurenceDicesOne = getNumberAndOccurence(dicesOne);
+  const occurenceDicesTwo = getNumberAndOccurence(dicesTwo);
+  const occurenceDicesThree = getNumberAndOccurence(dicesThree);
+
+  expect(getSquare('1', occurenceDicesOne)).toBe(0);
+  expect(getSquare('3', occurenceDicesTwo)).toBe(0);
+  expect(getSquare('4', occurenceDicesTwo)).toBe(0);
+  expect(getSquare('5', occurenceDicesTwo)).toBe(0);
+  expect(getSquare('1', occurenceDicesThree)).toBe(0);
+  expect(getSquare('6', occurenceDicesThree)).toBe(24);
 });

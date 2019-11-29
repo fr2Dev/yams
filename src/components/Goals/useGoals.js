@@ -105,10 +105,10 @@ const getSuiteLength = dices => {
 const getPetiteSuite = length => (length >= 4 ? 30 : 0);
 const getLargeSuite = length => (length === 5 ? 50 : 0);
 
-const getTrips = (name, dicesOccurence) => {
+const getSameNumbers = (name, dicesOccurence, minLength) => {
   const { length } = dicesOccurence;
   const numberSearched = Number(name);
-  const lengthRequired = 3;
+  const lengthRequired = minLength;
   const hasEnoughOccurence = dicesOccurence.some(dice => dice.occurence >= lengthRequired);
   const matchNumber = dicesOccurence.some(dice => {
     const { number, occurence } = dice;
@@ -118,11 +118,14 @@ const getTrips = (name, dicesOccurence) => {
 
   if (length > lengthRequired || !hasEnoughOccurence || !matchNumber) return 0;
   const tripsNumber = dicesOccurence.find(dice => dice.occurence >= lengthRequired);
-  const { number, occurence } = tripsNumber;
+  const { number } = tripsNumber;
   const total = number * lengthRequired;
 
   return total;
 };
+
+const getTrips = (name, dicesOccurence) => getSameNumbers(name, dicesOccurence, 3);
+const getSquare = (name, dicesOccurence) => getSameNumbers(name, dicesOccurence, 4);
 
 // const getTotalCombination = (goal, dices) => {
 //   const { name } = goal;
@@ -178,6 +181,7 @@ export {
   getTotalDices,
   getNumberAndOccurence,
   getSuiteLength,
-  getTrips
+  getTrips,
+  getSquare
 };
 export default useGoals;
