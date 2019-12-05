@@ -8,12 +8,18 @@ import {
   getNumberAndOccurence,
   getSuiteLength,
   getTrips,
-  getSquare
+  getSquare,
+  getFull,
+  getYams
 } from './useGoals';
 
 const dicesOne = [1, 3, 5, 3, 5];
 const dicesTwo = [1, 4, 4, 4, 5];
 const dicesThree = [1, 6, 6, 6, 6];
+const dicesFour = [1, 6, 6, 1, 6];
+const dicesFive = [1, 6, 6, 6, 6];
+const dicesSix = [2, 2, 3, 2, 3];
+const dicesYams = [2, 2, 2, 2, 2];
 
 const dicesSuiteOne = [5, 2, 1, 6, 4];
 const dicesSuiteTwo = [3, 2, 1, 6, 4];
@@ -170,26 +176,38 @@ test('should get sorted dices suite length', () => {
 });
 
 test('should get trips total value', () => {
-  const occurenceDicesOne = getNumberAndOccurence(dicesOne);
-  const occurenceDicesTwo = getNumberAndOccurence(dicesTwo);
-  const occurenceDicesThree = getNumberAndOccurence(dicesThree);
-
-  expect(getTrips('1', occurenceDicesOne)).toBe(0);
-  expect(getTrips('3', occurenceDicesTwo)).toBe(0);
-  expect(getTrips('4', occurenceDicesTwo)).toBe(12);
-  expect(getTrips('5', occurenceDicesTwo)).toBe(0);
-  expect(getTrips('1', occurenceDicesThree)).toBe(0);
-  expect(getTrips('6', occurenceDicesThree)).toBe(18);
+  expect(getTrips('1', dicesOne)).toBe(0);
+  expect(getTrips('3', dicesTwo)).toBe(0);
+  expect(getTrips('4', dicesTwo)).toBe(12);
+  expect(getTrips('5', dicesTwo)).toBe(0);
+  expect(getTrips('1', dicesThree)).toBe(0);
+  expect(getTrips('6', dicesThree)).toBe(18);
 });
-test('should get a square total value', () => {
-  const occurenceDicesOne = getNumberAndOccurence(dicesOne);
-  const occurenceDicesTwo = getNumberAndOccurence(dicesTwo);
-  const occurenceDicesThree = getNumberAndOccurence(dicesThree);
 
-  expect(getSquare('1', occurenceDicesOne)).toBe(0);
-  expect(getSquare('3', occurenceDicesTwo)).toBe(0);
-  expect(getSquare('4', occurenceDicesTwo)).toBe(0);
-  expect(getSquare('5', occurenceDicesTwo)).toBe(0);
-  expect(getSquare('1', occurenceDicesThree)).toBe(0);
-  expect(getSquare('6', occurenceDicesThree)).toBe(24);
+test('should get a square total value', () => {
+  expect(getSquare('1', dicesOne)).toBe(0);
+  expect(getSquare('3', dicesTwo)).toBe(0);
+  expect(getSquare('4', dicesTwo)).toBe(0);
+  expect(getSquare('5', dicesTwo)).toBe(0);
+  expect(getSquare('1', dicesThree)).toBe(0);
+  expect(getSquare('6', dicesThree)).toBe(24);
+});
+
+test('should get full value', () => {
+  expect(getFull(dicesOne)).toBe(0);
+  expect(getFull(dicesTwo)).toBe(0);
+  expect(getFull(dicesThree)).toBe(0);
+  expect(getFull(dicesFour)).toBe(20);
+  expect(getFull(dicesFive)).toBe(0);
+  expect(getFull(dicesSix)).toBe(12);
+});
+
+test('should get Yams', () => {
+  expect(getYams(dicesOne)).toBe(0);
+  expect(getYams(dicesTwo)).toBe(0);
+  expect(getYams(dicesThree)).toBe(0);
+  expect(getYams(dicesFour)).toBe(0);
+  expect(getYams(dicesFive)).toBe(0);
+  expect(getYams(dicesSix)).toBe(0);
+  expect(getYams(dicesYams)).toBe(50);
 });

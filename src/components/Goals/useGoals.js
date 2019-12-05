@@ -124,8 +124,41 @@ const getSameNumbers = (name, dicesOccurence, minLength) => {
   return total;
 };
 
-const getTrips = (name, dicesOccurence) => getSameNumbers(name, dicesOccurence, 3);
-const getSquare = (name, dicesOccurence) => getSameNumbers(name, dicesOccurence, 4);
+const getTrips = (name, dices) => {
+  const dicesOccurence = getNumberAndOccurence(dices);
+  const total = getSameNumbers(name, dicesOccurence, 3);
+
+  return total;
+};
+const getSquare = (name, dices) => {
+  const dicesOccurence = getNumberAndOccurence(dices);
+  const total = getSameNumbers(name, dicesOccurence, 4);
+
+  return total;
+};
+
+const getFull = dices => {
+  const dicesOccurence = getNumberAndOccurence(dices);
+  const { length } = dicesOccurence;
+  if (length !== 2) return 0;
+
+  const isFull = dicesOccurence.some(dice => {
+    return dice.occurence === 3;
+  });
+
+  if (!isFull) return 0;
+
+  const Total = getTotalDices(dices);
+  return Total;
+};
+
+const getYams = dices => {
+  const dicesOccurence = getNumberAndOccurence(dices);
+  const { length } = dicesOccurence;
+  if (length !== 1) return 0;
+
+  return 50;
+};
 
 // const getTotalCombination = (goal, dices) => {
 //   const { name } = goal;
@@ -151,18 +184,18 @@ const getSquare = (name, dicesOccurence) => getSameNumbers(name, dicesOccurence,
 //*       return getSquare(name, numberAndOccurence);
 //*       break;
 
-//     case 'full':
-//       return getFull();
-//       break;
+//*     case 'full':
+//*       return getFull();
+//*       break;
 
-//     case 'yams':
-//       return getYams();
-//       break;
+//*     case 'yams':
+//*       return getYams();
+//*       break;
 
-//     default:
-//       break;
-//   }
-// };
+//*     default:
+//*       break;
+//*   }
+//* };
 
 const useGoals = () => {
   const [goals, setGoals] = useState(listGoals);
@@ -186,6 +219,8 @@ export {
   getNumberAndOccurence,
   getSuiteLength,
   getTrips,
-  getSquare
+  getSquare,
+  getFull,
+  getYams
 };
 export default useGoals;
