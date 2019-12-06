@@ -6,12 +6,15 @@ const Goals = ({ goals, dices }) => {
   return (
     <ListGoals>
       {goals.map((goal, i) => {
-        const { name, value } = goal;
-        console.log('value: ', value);
+        const { name, value, isDone } = goal;
+        const isPositive = value > 0;
+
         return (
           <ItemGoal key={i.toString()}>
             {name}
-            <AvailableValue>{value}</AvailableValue>
+            <AvailableValue isPositive={isPositive} isDone={isDone}>
+              {value}
+            </AvailableValue>
           </ItemGoal>
         );
       })}
