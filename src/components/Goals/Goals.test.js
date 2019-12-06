@@ -10,7 +10,8 @@ import {
   getTrips,
   getSquare,
   getFull,
-  getYams
+  getYams,
+  getScoreAvailable
 } from './useGoals';
 
 const dicesOne = [1, 3, 5, 3, 5];
@@ -176,21 +177,15 @@ test('should get sorted dices suite length', () => {
 });
 
 test('should get trips total value', () => {
-  expect(getTrips('1', dicesOne)).toBe(0);
-  expect(getTrips('3', dicesTwo)).toBe(0);
-  expect(getTrips('4', dicesTwo)).toBe(12);
-  expect(getTrips('5', dicesTwo)).toBe(0);
-  expect(getTrips('1', dicesThree)).toBe(0);
-  expect(getTrips('6', dicesThree)).toBe(18);
+  expect(getTrips(dicesOne)).toBe(0);
+  expect(getTrips(dicesTwo)).toBe(12);
+  expect(getTrips(dicesThree)).toBe(18);
 });
 
 test('should get a square total value', () => {
-  expect(getSquare('1', dicesOne)).toBe(0);
-  expect(getSquare('3', dicesTwo)).toBe(0);
-  expect(getSquare('4', dicesTwo)).toBe(0);
-  expect(getSquare('5', dicesTwo)).toBe(0);
-  expect(getSquare('1', dicesThree)).toBe(0);
-  expect(getSquare('6', dicesThree)).toBe(24);
+  expect(getSquare(dicesOne)).toBe(0);
+  expect(getSquare(dicesTwo)).toBe(0);
+  expect(getSquare(dicesThree)).toBe(24);
 });
 
 test('should get full value', () => {
@@ -210,4 +205,142 @@ test('should get Yams', () => {
   expect(getYams(dicesFive)).toBe(0);
   expect(getYams(dicesSix)).toBe(0);
   expect(getYams(dicesYams)).toBe(50);
+});
+
+test('should get scores Available', () => {
+  expect(getScoreAvailable(listGoals, dicesOne)).toEqual([
+    {
+      isOnlyNumber: true,
+      name: '1',
+      value: 1
+    },
+    {
+      isOnlyNumber: true,
+      name: '2',
+      value: 0
+    },
+    {
+      isOnlyNumber: true,
+      name: '3',
+      value: 6
+    },
+    {
+      isOnlyNumber: true,
+      name: '4',
+      value: 0
+    },
+    {
+      isOnlyNumber: true,
+      name: '5',
+      value: 10
+    },
+    {
+      isOnlyNumber: true,
+      name: '6',
+      value: 0
+    },
+    {
+      isOnlyNumber: false,
+      name: 'trips',
+      value: 0
+    },
+    {
+      isOnlyNumber: false,
+      name: 'square',
+      value: 0
+    },
+    {
+      isOnlyNumber: false,
+      name: 'petiteSuite',
+      value: 0
+    },
+    {
+      isOnlyNumber: false,
+      name: 'largeSuite',
+      value: 0
+    },
+    {
+      isOnlyNumber: false,
+      name: 'full',
+      value: 0
+    },
+    {
+      isOnlyNumber: false,
+      name: 'luck',
+      value: 17
+    },
+    {
+      isOnlyNumber: false,
+      name: 'yams',
+      value: 0
+    }
+  ]);
+
+  expect(getScoreAvailable(listGoals, dicesThree)).toEqual([
+    {
+      isOnlyNumber: true,
+      name: '1',
+      value: 1
+    },
+    {
+      isOnlyNumber: true,
+      name: '2',
+      value: 0
+    },
+    {
+      isOnlyNumber: true,
+      name: '3',
+      value: 0
+    },
+    {
+      isOnlyNumber: true,
+      name: '4',
+      value: 0
+    },
+    {
+      isOnlyNumber: true,
+      name: '5',
+      value: 0
+    },
+    {
+      isOnlyNumber: true,
+      name: '6',
+      value: 24
+    },
+    {
+      isOnlyNumber: false,
+      name: 'trips',
+      value: 18
+    },
+    {
+      isOnlyNumber: false,
+      name: 'square',
+      value: 24
+    },
+    {
+      isOnlyNumber: false,
+      name: 'petiteSuite',
+      value: 0
+    },
+    {
+      isOnlyNumber: false,
+      name: 'largeSuite',
+      value: 0
+    },
+    {
+      isOnlyNumber: false,
+      name: 'full',
+      value: 0
+    },
+    {
+      isOnlyNumber: false,
+      name: 'luck',
+      value: 25
+    },
+    {
+      isOnlyNumber: false,
+      name: 'yams',
+      value: 0
+    }
+  ]);
 });

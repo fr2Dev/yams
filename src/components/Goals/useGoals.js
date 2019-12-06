@@ -44,8 +44,8 @@ const listGoals = setListGoals();
 const getAvailableGoals = goals => goals.filter(goal => goal.value === initialValue);
 const getOnlyNumbers = goalsAvailable => goalsAvailable.filter(goal => goal.isOnlyNumber);
 const getCombinations = goalsAvailable => goalsAvailable.filter(goal => !goal.isOnlyNumber);
-const getTotalSingleNumber = (goalNumber, arrayDices) => {
-  const number = Number(goalNumber);
+const getTotalSingleNumber = (goalName, arrayDices) => {
+  const number = Number(goalName);
   const total = arrayDices.reduce((prevNumber, nextNumber) => {
     if (nextNumber !== number) return prevNumber;
 
@@ -110,34 +110,34 @@ const getSuiteLength = dices => {
 const getPetiteSuite = length => (length >= 4 ? 30 : 0);
 const getLargeSuite = length => (length === 5 ? 50 : 0);
 
-const getSameNumbers = (name, dicesOccurence, minLength) => {
+const getSameNumbers = (dicesOccurence, minLength) => {
   const { length } = dicesOccurence;
-  const numberSearched = Number(name);
   const lengthRequired = minLength;
   const hasEnoughOccurence = dicesOccurence.some(dice => dice.occurence >= lengthRequired);
   const matchNumber = dicesOccurence.some(dice => {
-    const { number, occurence } = dice;
+    const { occurence } = dice;
 
-    return number === numberSearched && occurence >= lengthRequired;
+    return occurence >= lengthRequired;
   });
 
   if (length > lengthRequired || !hasEnoughOccurence || !matchNumber) return 0;
-  const tripsNumber = dicesOccurence.find(dice => dice.occurence >= lengthRequired);
-  const { number } = tripsNumber;
+
+  const matchedDice = dicesOccurence.find(dice => dice.occurence >= lengthRequired);
+  const { number } = matchedDice;
   const total = number * lengthRequired;
 
   return total;
 };
 
-const getTrips = (name, dices) => {
+const getTrips = dices => {
   const dicesOccurence = getNumberAndOccurence(dices);
-  const total = getSameNumbers(name, dicesOccurence, 3);
+  const total = getSameNumbers(dicesOccurence, 3);
 
   return total;
 };
-const getSquare = (name, dices) => {
+const getSquare = dices => {
   const dicesOccurence = getNumberAndOccurence(dices);
-  const total = getSameNumbers(name, dicesOccurence, 4);
+  const total = getSameNumbers(dicesOccurence, 4);
 
   return total;
 };
@@ -165,42 +165,54 @@ const getYams = dices => {
   return 50;
 };
 
-// const getTotalCombination = (goal, dices) => {
-//   const { name } = goal;
+const getTotalCombination = (goalName, dices) => {
+  switch (goalName) {
+    case 'petiteSuite':
+      const petiteSuiteLength = getSuiteLength(dices);
+      return getPetiteSuite(petiteSuiteLength);
 
-//   switch (name) {
-//*     case 'petiteSuite':
-//*       const suiteLength = getSuiteLength(dices);
-//*       return getPetiteSuite(suiteLength);
-//*       break;
+    case 'largeSuite':
+      const largeSuiteLength = getSuiteLength(dices);
+      return getLargeSuite(largeSuiteLength);
 
-//*     case 'largeSuite':
-//*       const suiteLength = getSuiteLength(dices);
-//*       return getLargeSuite(suiteLength);
-//*       break;
+    case 'trips':
+      const tripsValue = getTrips(dices);
+      return tripsValue;
 
-//*     case 'trips':
-//*       const numberAndOccurence = getNumberAndOccurence(dices);
-//*       return getTrips(name, numberAndOccurence);
-//*       break;
+    case 'square':
+      const squareValue = getSquare(dices);
+      return squareValue;
 
-//*     case 'square':
-//*       const numberAndOccurence = getNumberAndOccurence(dices);
-//*       return getSquare(name, numberAndOccurence);
-//*       break;
+    case 'full':
+      return getFull(dices);
 
-//*     case 'full':
-//*       return getFull();
-//*       break;
+    case 'luck':
+      return getTotalDices(dices);
 
-//*     case 'yams':
-//*       return getYams();
-//*       break;
+    case 'yams':
+      return getYams(dices);
 
-//*     default:
-//*       break;
-//*   }
-//* };
+    default:
+      break;
+  }
+};
+
+const getScoreAvailable = (goals, dices) => {
+  const scoreAvailable = goals.map(goal => {
+    const { name, value, isOnlyNumber } = goal;
+    if (value !== null) return goal;
+
+    const total = isOnlyNumber
+      ? getTotalSingleNumber(name, dices)
+      : getTotalCombination(name, dices);
+
+    const newGoal = { ...goal, value: total };
+
+    return newGoal;
+  });
+
+  return scoreAvailable;
+};
 
 const useGoals = () => {
   const [goals, setGoals] = useState(listGoals);
@@ -226,6 +238,7 @@ export {
   getTrips,
   getSquare,
   getFull,
-  getYams
+  getYams,
+  getScoreAvailable
 };
 export default useGoals;
