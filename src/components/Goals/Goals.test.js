@@ -212,66 +212,79 @@ test('should get scores Available', () => {
     {
       isOnlyNumber: true,
       name: '1',
+      isDone: false,
       value: 1
     },
     {
       isOnlyNumber: true,
       name: '2',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: true,
       name: '3',
+      isDone: false,
       value: 6
     },
     {
       isOnlyNumber: true,
       name: '4',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: true,
       name: '5',
+      isDone: false,
       value: 10
     },
     {
       isOnlyNumber: true,
       name: '6',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: false,
       name: 'trips',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: false,
       name: 'square',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: false,
       name: 'petiteSuite',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: false,
       name: 'largeSuite',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: false,
       name: 'full',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: false,
       name: 'luck',
+      isDone: false,
       value: 17
     },
     {
       isOnlyNumber: false,
       name: 'yams',
+      isDone: false,
       value: 0
     }
   ]);
@@ -280,66 +293,79 @@ test('should get scores Available', () => {
     {
       isOnlyNumber: true,
       name: '1',
+      isDone: false,
       value: 1
     },
     {
       isOnlyNumber: true,
       name: '2',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: true,
       name: '3',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: true,
       name: '4',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: true,
       name: '5',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: true,
       name: '6',
+      isDone: false,
       value: 24
     },
     {
       isOnlyNumber: false,
       name: 'trips',
+      isDone: false,
       value: 18
     },
     {
       isOnlyNumber: false,
       name: 'square',
+      isDone: false,
       value: 24
     },
     {
       isOnlyNumber: false,
       name: 'petiteSuite',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: false,
       name: 'largeSuite',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: false,
       name: 'full',
+      isDone: false,
       value: 0
     },
     {
       isOnlyNumber: false,
       name: 'luck',
+      isDone: false,
       value: 25
     },
     {
       isOnlyNumber: false,
       name: 'yams',
+      isDone: false,
       value: 0
     }
   ]);

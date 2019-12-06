@@ -9,6 +9,7 @@ const addGoals = arrayGoals => (name, isOnlyNumber = true) => {
     {
       name,
       isOnlyNumber,
+      isDone: false,
       value: initialValue
     }
   ];
@@ -217,7 +218,7 @@ const getScoreAvailable = (goals, dices) => {
 const useGoals = () => {
   const [goals, setGoals] = useState(listGoals);
 
-  return { goals };
+  return { goals, getScoreAvailable };
 };
 //TODO: Dans goals.js
 //TODO: goals.map

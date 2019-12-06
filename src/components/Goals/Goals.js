@@ -7,6 +7,7 @@ const Goals = ({ goals, dices }) => {
     <ListGoals>
       {goals.map((goal, i) => {
         const { name, value } = goal;
+        console.log('value: ', value);
         return (
           <ItemGoal key={i.toString()}>
             {name}
