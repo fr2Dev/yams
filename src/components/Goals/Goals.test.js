@@ -112,14 +112,14 @@ test('shoulg get right categorie of goals', () => {
 });
 
 test('should get total single number', () => {
-  expect(getTotalSingleNumber(1, dicesOne)).toEqual(1);
-  expect(getTotalSingleNumber(3, dicesOne)).toEqual(6);
-  expect(getTotalSingleNumber(5, dicesOne)).toEqual(10);
-  expect(getTotalSingleNumber(1, dicesTwo)).toEqual(1);
-  expect(getTotalSingleNumber(4, dicesTwo)).toEqual(12);
-  expect(getTotalSingleNumber(5, dicesTwo)).toEqual(5);
-  expect(getTotalSingleNumber(1, dicesThree)).toEqual(1);
-  expect(getTotalSingleNumber(6, dicesThree)).toEqual(24);
+  expect(getTotalSingleNumber('1', dicesOne)).toEqual(1);
+  expect(getTotalSingleNumber('3', dicesOne)).toEqual(6);
+  expect(getTotalSingleNumber('5', dicesOne)).toEqual(10);
+  expect(getTotalSingleNumber('1', dicesTwo)).toEqual(1);
+  expect(getTotalSingleNumber('4', dicesTwo)).toEqual(12);
+  expect(getTotalSingleNumber('5', dicesTwo)).toEqual(5);
+  expect(getTotalSingleNumber('1', dicesThree)).toEqual(1);
+  expect(getTotalSingleNumber('6', dicesThree)).toEqual(24);
 });
 
 test('should get dices total', () => {

@@ -44,12 +44,17 @@ const listGoals = setListGoals();
 const getAvailableGoals = goals => goals.filter(goal => goal.value === initialValue);
 const getOnlyNumbers = goalsAvailable => goalsAvailable.filter(goal => goal.isOnlyNumber);
 const getCombinations = goalsAvailable => goalsAvailable.filter(goal => !goal.isOnlyNumber);
-const getTotalSingleNumber = (number, arrayDices) =>
-  arrayDices.reduce((prevNumber, nextNumber) => {
+const getTotalSingleNumber = (goalNumber, arrayDices) => {
+  const number = Number(goalNumber);
+  const total = arrayDices.reduce((prevNumber, nextNumber) => {
     if (nextNumber !== number) return prevNumber;
 
     return prevNumber + nextNumber;
   }, 0);
+
+  return total;
+};
+
 const getTotalDices = dices => dices.reduce((prevDice, nextDice) => prevDice + nextDice, 0);
 
 const getNumberAndOccurence = dices =>
