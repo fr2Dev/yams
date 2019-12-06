@@ -92,7 +92,7 @@ const getNumberAndOccurence = dices =>
   }, []);
 
 const getSuiteLength = dices => {
-  const sortedDices = dices.sort();
+  const sortedDices = [...new Set(dices)].sort();
   const getInitialValue = () => sortedDices[0] - 1;
   const initialValue = getInitialValue();
   const minimumLength = 4;
@@ -220,12 +220,6 @@ const useGoals = () => {
 
   return { goals, getScoreAvailable };
 };
-//TODO: Dans goals.js
-//TODO: goals.map
-//TODO: if value is null then calculate & value is onlyNumber use fn calcNumber else use fn calcCombination | display box value
-//TODO: goal.value === null ? calculate && value is onlyNumber ? calcNumber : calcCombination && display box value
-
-//* Calc number => dices.some(goal => goal.name) && dices.reduce() && total = occurence * goal.value
 
 export {
   listGoals,
@@ -236,6 +230,8 @@ export {
   getTotalDices,
   getNumberAndOccurence,
   getSuiteLength,
+  getPetiteSuite,
+  getLargeSuite,
   getTrips,
   getSquare,
   getFull,

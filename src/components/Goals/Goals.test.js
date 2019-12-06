@@ -7,6 +7,8 @@ import {
   getTotalDices,
   getNumberAndOccurence,
   getSuiteLength,
+  getPetiteSuite,
+  getLargeSuite,
   getTrips,
   getSquare,
   getFull,
@@ -25,6 +27,7 @@ const dicesYams = [2, 2, 2, 2, 2];
 const dicesSuiteOne = [5, 2, 1, 6, 4];
 const dicesSuiteTwo = [3, 2, 1, 6, 4];
 const dicesSuiteThree = [5, 2, 1, 3, 4];
+const dicesSuiteFour = [2, 1, 3, 4, 2];
 
 const getGoalsCompleted = number => {
   const goalsCompleted = listGoals.map((goal, i) => {
@@ -174,6 +177,13 @@ test('should get sorted dices suite length', () => {
   expect(getSuiteLength(dicesSuiteOne)).toBe(null);
   expect(getSuiteLength(dicesSuiteTwo)).toBe(4);
   expect(getSuiteLength(dicesSuiteThree)).toBe(5);
+});
+
+test('should get petite suite', () => {
+  // expect(getPetiteSuite(getSuiteLength(dicesSuiteOne))).toBe(0);
+  // expect(getPetiteSuite(getSuiteLength(dicesSuiteTwo))).toBe(30);
+  // expect(getPetiteSuite(getSuiteLength(dicesSuiteThree))).toBe(30);
+  expect(getPetiteSuite(getSuiteLength(dicesSuiteFour))).toBe(30);
 });
 
 test('should get trips total value', () => {
