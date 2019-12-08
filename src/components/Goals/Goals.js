@@ -3,7 +3,6 @@ import { ListGoals, ItemGoal, AvailableValue } from './style';
 
 const Goals = ({ goals, setGoalDone, scoreTracking }) => {
   const { score, missingPrime, total } = scoreTracking;
-  const prime = missingPrime === 0 ? -63 : missingPrime;
   const hasPrime = score >= 63;
   const totalScore = hasPrime ? total + 35 : total;
 
@@ -35,7 +34,7 @@ const Goals = ({ goals, setGoalDone, scoreTracking }) => {
                 </ItemGoal>
                 <ItemGoal isDone>
                   Prime (35)
-                  <AvailableValue isDone>{prime}</AvailableValue>
+                  <AvailableValue isDone>{missingPrime}</AvailableValue>
                 </ItemGoal>
               </Fragment>
             )}

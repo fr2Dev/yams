@@ -5,7 +5,7 @@ import useGoals from '../../components/Goals/useGoals';
 import useThrow from '../../hooks/useThrow';
 import Goals from '../../components/Goals';
 import Button from '../../components/Button';
-import { Title, Container } from './style';
+import { Title, Container, Modal } from './style';
 
 const Main = () => {
   // Hooks
@@ -23,7 +23,7 @@ const Main = () => {
   const [turn, setTurn] = useState(goals.length);
   const [scoreTracking, setScoreTracking] = useState({
     score: 0,
-    missingPrime: 0,
+    missingPrime: -63,
     total: 0
   });
 
@@ -40,6 +40,8 @@ const Main = () => {
     }
   };
 
+  const gameIsOver = turn === 0;
+
   const dicesNumber = getDicesNumbers(dices);
   const scoreAvailable = getScoreAvailable(goals, dicesNumber);
 
@@ -55,6 +57,10 @@ const Main = () => {
       total: getTotalScore(goals)
     });
   };
+
+  const hasPrime = getTopScore(goals) >= 63;
+  const total = getTotalScore(goals);
+  const finalScore = hasPrime ? total + 35 : total;
 
   const isThrowDisabled = throws === 0;
 
@@ -73,6 +79,13 @@ const Main = () => {
             throw
           </Button>
         </div>
+        {gameIsOver && (
+          <Modal>
+            <div>
+              🎉 You've scored <span>{finalScore}</span> points ! 🎉
+            </div>
+          </Modal>
+        )}
       </Container>
     </div>
   );
