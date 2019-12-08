@@ -58,8 +58,6 @@ const Main = () => {
 
   const isThrowDisabled = throws === 0;
 
-  console.log('goals: ', goals);
-
   return (
     <div>
       <Title>

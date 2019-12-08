@@ -17,7 +17,7 @@ const Goals = ({ goals, setGoalDone, scoreTracking }) => {
 
         return (
           <Fragment key={i.toString()}>
-            <ItemGoal>
+            <ItemGoal isDone={isDone}>
               {name}
               <AvailableValue
                 isPositive={isPositive}
@@ -29,18 +29,18 @@ const Goals = ({ goals, setGoalDone, scoreTracking }) => {
             </ItemGoal>
             {isTopScoreEnd && (
               <Fragment>
-                <ItemGoal>
+                <ItemGoal isDone>
                   Score (63)
                   <AvailableValue isDone>{score}</AvailableValue>
                 </ItemGoal>
-                <ItemGoal>
+                <ItemGoal isDone>
                   Prime (35)
                   <AvailableValue isDone>{prime}</AvailableValue>
                 </ItemGoal>
               </Fragment>
             )}
             {isGoalEnd && (
-              <ItemGoal>
+              <ItemGoal isDone>
                 Total
                 <AvailableValue isDone>{totalScore}</AvailableValue>
               </ItemGoal>
