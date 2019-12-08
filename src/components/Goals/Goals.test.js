@@ -180,9 +180,6 @@ test('should get sorted dices suite length', () => {
 });
 
 test('should get petite suite', () => {
-  // expect(getPetiteSuite(getSuiteLength(dicesSuiteOne))).toBe(0);
-  // expect(getPetiteSuite(getSuiteLength(dicesSuiteTwo))).toBe(30);
-  // expect(getPetiteSuite(getSuiteLength(dicesSuiteThree))).toBe(30);
   expect(getPetiteSuite(getSuiteLength(dicesSuiteFour))).toBe(30);
 });
 

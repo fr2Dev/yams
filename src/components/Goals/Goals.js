@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListGoals, ItemGoal, AvailableValue } from './style';
 
-const Goals = ({ goals, dices }) => {
+const Goals = ({ goals, dices, setGoalDone }) => {
   console.log('dices: ', dices);
   return (
     <ListGoals>
@@ -12,7 +12,11 @@ const Goals = ({ goals, dices }) => {
         return (
           <ItemGoal key={i.toString()}>
             {name}
-            <AvailableValue isPositive={isPositive} isDone={isDone}>
+            <AvailableValue
+              isPositive={isPositive}
+              isDone={isDone}
+              onClick={() => !isDone && setGoalDone(value, i)}
+            >
               {value}
             </AvailableValue>
           </ItemGoal>

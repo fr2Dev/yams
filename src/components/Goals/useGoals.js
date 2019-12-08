@@ -218,7 +218,12 @@ const getScoreAvailable = (goals, dices) => {
 const useGoals = () => {
   const [goals, setGoals] = useState(listGoals);
 
-  return { goals, getScoreAvailable };
+  const setGoalDone = (value, i) => {
+    goals[i] = { ...goals[i], value, isDone: true };
+    setGoals([...goals]);
+  };
+
+  return { goals, getScoreAvailable, setGoalDone };
 };
 
 export {

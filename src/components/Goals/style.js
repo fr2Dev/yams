@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 
 const getValueBackgroundColor = (isPositive, isDone) =>
-  isDone ? 'lightGrey' : isPositive ? 'green' : '#333';
+  isDone ? '#ffcc66' : isPositive ? 'green' : '#333';
 
 const ListGoals = styled.ul`
   background-color: #ffcc66;
@@ -26,8 +26,8 @@ const ItemGoal = styled.li`
 
 const AvailableValue = styled.span`
   background-color: ${({ isPositive, isDone }) => getValueBackgroundColor(isPositive, isDone)};
-  color: #fff;
-  cursor: pointer;
+  color: ${({ isDone }) => (!isDone ? '#fff' : '#333')};
+  cursor: ${({ isDone }) => !isDone && 'pointer'};
   padding: 0.25rem 0.5rem;
   position: absolute;
   right: 0;
@@ -38,7 +38,7 @@ const AvailableValue = styled.span`
 
   &:hover {
     background-color: ${({ isPositive, isDone }) =>
-      darken(0.08, getValueBackgroundColor(isPositive, isDone))};
+      !isDone && darken(0.08, getValueBackgroundColor(isPositive, isDone))};
   }
 `;
 
