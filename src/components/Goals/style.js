@@ -2,14 +2,18 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 
 const getValueBackgroundColor = (isPositive, isDone) =>
-  isDone ? '#ffcc66' : isPositive ? 'green' : '#333';
+  isDone ? '#fff' : isPositive ? '#FE7F2D' : '#ddd';
 
 const ListGoals = styled.ul`
-  background-color: #ffcc66;
+  && {
+    margin-right: 1.5rem;
+  }
+  background-color: #fff;
   border-radius: 4px;
   border: 1px solid #333;
+  font-weight: bold;
   list-style: none;
-  min-width: 16rem;
+  min-width: 10rem;
   padding: 1rem;
 `;
 
@@ -26,9 +30,9 @@ const ItemGoal = styled.li`
 
 const AvailableValue = styled.span`
   background-color: ${({ isPositive, isDone }) => getValueBackgroundColor(isPositive, isDone)};
-  color: ${({ isDone }) => (!isDone ? '#fff' : '#333')};
+  color: ${({ isPositive, isDone }) => (isPositive && !isDone ? '#fff' : '#333')};
   cursor: ${({ isDone }) => !isDone && 'pointer'};
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0;
   position: absolute;
   right: 0;
   text-align: center;

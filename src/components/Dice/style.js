@@ -21,16 +21,17 @@ const Wrapper = styled.div`
   border: 2px solid #333;
   border-radius: 8px;
   box-shadow: ${({ isKept }) => isKept && '0 0 5px 2px green'};
-  height: ${({ size }) => size || '3.2rem'};
+  height: ${({ size }) => size || '5rem'};
+  margin: 0 auto 0.5rem;
   position: relative;
-  width: ${({ size }) => size || '3.2rem'};
+  width: ${({ size }) => size || '5rem'};
 `;
 
 const Dot = styled.div`
   background-color: #333;
   border-radius: 50%;
-  height: 0.7rem;
-  width: 0.7rem;
+  height: 1rem;
+  width: 1rem;
 `;
 
 const Side = styled.div`

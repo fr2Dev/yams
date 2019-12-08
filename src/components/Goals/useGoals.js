@@ -215,6 +215,28 @@ const getScoreAvailable = (goals, dices) => {
   return scoreAvailable;
 };
 
+const getTotalScore = goals =>
+  goals.reduce((prevGoal, nextGoal) => {
+    const nextValue = nextGoal.value === null ? 0 : nextGoal.value;
+
+    return prevGoal + nextValue;
+  }, 0);
+
+const getTopScore = goals => {
+  const goalsOnlyNumber = goals.filter(goal => goal.isOnlyNumber);
+
+  return getTotalScore(goalsOnlyNumber);
+};
+
+const getMissingPrime = goals => {
+  const topScore = getTopScore(goals);
+  console.log('topScore: ', topScore);
+  const missingScore = topScore - 63;
+  const scorePrime = missingScore > 0 ? topScore : missingScore;
+
+  return scorePrime;
+};
+
 const useGoals = () => {
   const [goals, setGoals] = useState(listGoals);
 
@@ -223,7 +245,7 @@ const useGoals = () => {
     setGoals([...goals]);
   };
 
-  return { goals, getScoreAvailable, setGoalDone };
+  return { goals, getScoreAvailable, setGoalDone, getTotalScore, getTopScore, getMissingPrime };
 };
 
 export {

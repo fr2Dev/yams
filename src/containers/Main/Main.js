@@ -10,10 +10,22 @@ import { Title, Container } from './style';
 const Main = () => {
   // Hooks
   const { dices, throwDices, keepDices, toggleKeep, resetDices } = useDice();
-  const { goals, getScoreAvailable, setGoalDone } = useGoals();
+  const {
+    goals,
+    getScoreAvailable,
+    setGoalDone,
+    getTotalScore,
+    getTopScore,
+    getMissingPrime
+  } = useGoals();
   const { getDicesNumbers, getUniqueDices } = useThrow();
   const [throws, setThrows] = useState(2);
   const [turn, setTurn] = useState(goals.length);
+  const [scoreTracking, setScoreTracking] = useState({
+    score: 0,
+    missingPrime: 0,
+    total: 0
+  });
 
   useEffect(() => {
     throwDices();
@@ -37,6 +49,11 @@ const Main = () => {
     resetDices();
     setNewThrows();
     setNewTurn();
+    setScoreTracking({
+      score: getTopScore(goals),
+      missingPrime: getMissingPrime(goals),
+      total: getTotalScore(goals)
+    });
   };
 
   const isThrowDisabled = throws === 0;
@@ -49,7 +66,7 @@ const Main = () => {
         {turn} turn remainings - {throws} throws remainings
       </Title>
       <Container>
-        <Goals goals={scoreAvailable} dices={dices} setGoalDone={scoreGoal} />
+        <Goals goals={scoreAvailable} setGoalDone={scoreGoal} scoreTracking={scoreTracking} />
         <div>
           {dices.map((dice, i) => (
             <Dice key={i.toString()} toggleKeep={toggleKeep} dice={dice} index={i} />
