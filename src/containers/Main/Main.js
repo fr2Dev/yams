@@ -5,7 +5,7 @@ import useGoals from '../../components/Goals/useGoals';
 import useThrow from '../../hooks/useThrow';
 import Goals from '../../components/Goals';
 import Button from '../../components/Button';
-import { Title, Container, Modal } from './style';
+import { Title, Container, Modal, Subtitle } from './style';
 
 const Main = () => {
   // Hooks
@@ -63,12 +63,18 @@ const Main = () => {
   const finalScore = hasPrime ? total + 35 : total;
 
   const isThrowDisabled = throws === 0;
+  const title = `${turn} turn${getPlural(turn)} remaining`;
+  const subtitle =
+    turn > 0
+      ? throws == 0
+        ? `No more throw, pick a row`
+        : `${throws} throw${getPlural(throws)} remaining`
+      : 'No more throw';
 
   return (
-    <div>
-      <Title>
-        {turn} turn remainings - {throws} throws remainings
-      </Title>
+    <>
+      <Title>{title}</Title>
+      <Subtitle>{subtitle}</Subtitle>
       <Container>
         <Goals goals={scoreAvailable} setGoalDone={scoreGoal} scoreTracking={scoreTracking} />
         <div>
@@ -79,16 +85,18 @@ const Main = () => {
             throw
           </Button>
         </div>
-        {gameIsOver && (
-          <Modal>
-            <div>
-              🎉 You've scored <span>{finalScore}</span> points ! 🎉
-            </div>
-          </Modal>
-        )}
       </Container>
-    </div>
+      {gameIsOver && (
+        <Modal>
+          <div>
+            🎉 You've scored <span>{finalScore}</span> points ! 🎉
+          </div>
+        </Modal>
+      )}
+    </>
   );
 };
+
+const getPlural = num => (num > 1 ? 's' : '');
 
 export default Main;

@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   background: #fff;
   border: 2px solid #333;
   border-radius: 8px;
-  box-shadow: ${({ isKept }) => isKept && '0 0 5px 2px green'};
+  box-shadow: ${({ isKept }) => isKept && '0 0 5px 4px #FF5722'};
   height: ${({ size }) => size || '4rem'};
   margin: 0 auto 0.5rem;
   position: relative;

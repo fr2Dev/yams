@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 
 const getValueBackgroundColor = (isPositive, isDone) =>
-  isDone ? '#dedede' : isPositive ? '#FE7F2D' : '#fff';
+  isDone ? '#CFD8DC' : isPositive ? '#FF5722' : '#fff';
 
 const ListGoals = styled.ul`
   && {
@@ -13,12 +13,12 @@ const ListGoals = styled.ul`
   border: 1px solid #333;
   font-weight: bold;
   list-style: none;
-  min-width: 10rem;
+  min-width: 12rem;
   padding: 1rem;
 `;
 
 const ItemGoal = styled.li`
-  background-color: ${({ isDone }) => isDone && '#dedede'};
+  background-color: ${({ isDone }) => isDone && '#CFD8DC'};
   padding: 0.25rem 0.5rem;
   position: relative;
   text-transform: capitalize;

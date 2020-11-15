@@ -38,6 +38,7 @@ const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
+    font-family: 'Roboto', sans-serif;
   }
 
   /* Remove list styles on ul, ol elements with a class attribute */
@@ -68,6 +69,15 @@ const GlobalStyle = createGlobalStyle`
   textarea,
   select {
     font: inherit;
+  }
+
+  .App {
+    height: 100vh;
+    width: 100vw;
+    background: #00E676;
+    display: flex;
+    align-items:center;
+    flex-direction: column;
   }
 
   /* Remove all animations and transitions for people that prefer not to see them */

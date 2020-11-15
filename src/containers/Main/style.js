@@ -4,14 +4,18 @@ const Title = styled.h1`
   text-align: center;
 `;
 
+const Subtitle = styled.h2`
+  text-align: center;
+`;
+
 const Container = styled.div`
   align-items: center;
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1; */
   display: flex;
   justify-content: center;
   padding: 1rem;
   position: relative;
-  width: 100vw;
+  /* width: 100vw; */
   z-index: 1;
 `;
 
@@ -24,6 +28,7 @@ const Modal = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100vw;
+  z-index: 1;
 
   & > * {
     background-color: #fff;
@@ -42,4 +47,4 @@ const Modal = styled.div`
   }
 `;
 
-export { Title, Container, Modal };
+export { Title, Container, Modal, Subtitle };
